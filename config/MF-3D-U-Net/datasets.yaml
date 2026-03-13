@@ -1,0 +1,20 @@
+SHMUDataset:
+  metadata_folder: "/projects/p1364-25-2/datasets/SHMU_4_New/metadata"
+  path: "/projects/p1364-25-2/datasets/SHMU-4-3Dmemmap"
+  input_block_length: 8
+  # Number of frames that are predicted
+  prediction_block_length: 16
+  # Original Image size
+  transform_to_mmh: true
+  normalization_method: "dBR"
+  products: ['dBZ']
+  aggregate_vertical: true
+  erosion_mask: false
+  denoise: true
+  memmaps: true
+augmentations:
+  horizontal_flip: true
+  vertical_flip: true
+  rotate: false
+  crop_size: [512, 512]
+  edge_nan_padding: 0
