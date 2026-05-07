@@ -1,6 +1,6 @@
 SHMUDataset:
-  metadata_folder: "/projects/p1364-25-2/datasets/SHMU_4_New/metadata"
-  path: "/projects/p1364-25-2/datasets/SHMU-4-3Dmemmap"
+  metadata_folder: "./data/metadata"
+  path: "./data/radar_files"
   input_block_length: 8
   # Number of frames that are predicted
   prediction_block_length: 16
