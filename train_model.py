@@ -19,7 +19,6 @@ from pytorch_lightning.loggers import WandbLogger
 from datamodules.datamoduleSVKDualPol import SlovakDataModuleDualPol
 
 from models import RainNet3D_OneShot as RN
-from models import RainNet3D_OneShot_GAN as RN_GAN
 from models import MF3DUNet as MF3DUNet
 from models import MF3DUNetVolumetric
 from models import MF3DUNetAltitudeWise
@@ -46,8 +45,6 @@ def main(config, run_name, checkpoint=None, seed=1, test_only=False):
 
     if modelconf.architecture == "RainNet3Dconv_2Ddata":
         model = RN(modelconf)
-    elif modelconf.architecture == "RainNet3Dconv_2Ddata_GAN":
-        model = RN_GAN(modelconf)
     elif modelconf.architecture == "MF-3D-U-Net":
         model = MF3DUNet(modelconf)
     elif modelconf.architecture == "MF-3D-U-Net_volumetric":

@@ -8,13 +8,13 @@
 #SBATCH --gpus-per-task=1
 #SBATCH --mem=124G
 
-#SBATCH --account=p709-24-2
+#SBATCH --account=XXX
 
-export TMPDIR=/scratch/p709-24-2/tmp
+export TMPDIR=/scratch/XXX/tmp
 cd ..
 srun /home/ppavlik/miniconda3/envs/nowcasting/bin/python \
  train_model.py \
  MF-3D-U-Net \
  -n CMAX \
- -c /projects/p709-24-2/checkpoints/Nowcasting_SVK_dualpol/CMAX/epoch=12-step=13000.ckpt \
+ -c /projects/XXX/checkpoints/Nowcasting_SVK_dualpol/CMAX/epoch=12-step=13000.ckpt \
  -t

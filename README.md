@@ -1,17 +1,35 @@
-# Volumetric Radar Echo Motion Estimation Using Physics-Informed Deep Learning: A Case Study Over Slovakia
-Repository containing the code needed to replicate the volumetric motion field extimator from the paper [*Volumetric Radar Echo Motion Estimation Using Physics-Informed Deep Learning: A Case Study Over Slovakia*](https://arxiv.org/abs/2603.13589).
+# Assessing the Utility of Volumetric Motion Fields for Radar-based Precipitation Nowcasting with Physics-informed Deep Learning
+Repository containing the code needed to replicate the volumetric motion field estimator from the paper [*Assessing the Utility of Volumetric Motion Fields for Radar-based Precipitation Nowcasting with Physics-informed Deep Learning*](https://arxiv.org/abs/2603.13589).
 
-### Abstract
+## Requirements
+To run this code, you need Python 3.13+ and the following dependencies:
 
-In precipitation nowcasting, most extrapolation-based methods rely on two-dimensional radar composites to estimate the horizontal motion of precipitation systems. However, in some cases, precipitation systems can exhibit varying motion at different heights. We propose a physics-informed convolutional neural network that estimates independent horizontal motion fields for multiple altitude layers directly from volumetric radar reflectivity data and investigate the practical benefits of altitude-wise motion field estimation for precipitation nowcasting. The model is trained end-to-end on volumetric observations from the Slovak radar network and its extrapolation nowcasting performance is evaluated. We compare the proposed model against an architecturally identical baseline operating on vertically pooled two-dimensional radar composites. Our results show that, although the model successfully learns altitude-wise motion fields, the estimated displacement is highly correlated across vertical levels for the vast majority of precipitation events. Consequently, the volumetric approach does not yield systematic improvements in nowcasting accuracy. While categorical metrics indicate increased precipitation detection at longer lead times, this gain is largely attributable to non-physical artifacts and is accompanied by a growing positive bias. A comprehensive inter-altitude motion field correlation analysis further confirms that events exhibiting meaningful vertical variability in horizontal motion are rare in the studied region. We conclude that, for the Slovak radar dataset, the additional complexity of three-dimensional motion field estimation is not justified by questionable gains in predictive skill. Nonetheless, the proposed framework remains applicable in climates where precipitation systems exhibit stronger vertical variability in horizontal motion.
+PyTorch, PyTorch Lightning, Matplotlib, Pandas, IPython kernel, Pysteps and wandb
 
-**A more detailed README with instructions for replication to be added.**
+To install, run: ```conda create --name <env> --file requirements.txt```
+
+## Sample Demo
+
+The trained 3DMF-U-Net model checkpoint is included in the repository along with a single data sample for demonstration. To visualize the model's output, run the Jupyter notebook located in `notebooks\3DMF-U-Net_visualize.ipynb`. The notebook generates multiple interactive HTML animations. For more test samples, download the radar data file from the link below and paste the files into the `data\radar_files` folder.
+
+The demo notebook was verified to run on **NVIDIA GeForce RTX 4070 Laptop GPU with 8GB of VRAM**.
+
+## Replication
+
+To train the model yourself, download the dataset from the link below and paste the files into the `data\radar_files` folder. To train the volumetric 3DMF-U-Net model, simply run:
+
+```python train_model.py MF-3D-U-Net_altitude_wise```
+
+If you want to also train the baseline model processing the CMAX radar images, run:
+
+```python train_model.py MF-3D-U-Net```
+
+The training is configured to run on a single **NVIDIA A100 40 GB**.
+
+A test run is automatically performed after the training ends using the checkpoint that performed the best on the validation set.
 
 ## Links
-### Dataset archive: [https://drive.google.com/file/d/1jjX21crezHQtJEPDncYguEmCQN_h6cN6](https://drive.google.com/file/d/1jjX21crezHQtJEPDncYguEmCQN_h6cN6)
+### Dataset archive: [https://doi.org/10.5281/zenodo.20077116](https://doi.org/10.5281/zenodo.20077116)
 - Data from the Slovak radar network - four dual-pol doppler radars
 - roughly 3.5 years
 - quantized, zipped and containing only the volumetric reflectivity fields, the size is 13 GB
-
-### Dataset metadata file: [https://drive.google.com/file/d/14wdZWo0wUcV_cEaSlHG_HY1TT9HZowxr](https://drive.google.com/file/d/14wdZWo0wUcV_cEaSlHG_HY1TT9HZowxr)
-- needed for the dataloader to work

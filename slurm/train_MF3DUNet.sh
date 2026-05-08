@@ -8,9 +8,9 @@
 #SBATCH --gpus-per-task=1
 #SBATCH --mem=124G
 
-#SBATCH --account=p709-24-2
+#SBATCH --account=XXX
 
-export TMPDIR=/scratch/p709-24-2/tmp
+export TMPDIR=/scratch/XXX/tmp
 cd ..
 srun /home/ppavlik/miniconda3/envs/nowcasting/bin/python \
  train_model.py \
